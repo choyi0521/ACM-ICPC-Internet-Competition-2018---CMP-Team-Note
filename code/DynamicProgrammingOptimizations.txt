@@ -1,0 +1,21 @@
+credit: https://codeforces.com/blog/entry/8219
+
+A[i][j] - the smallest k that gives optimal answer, for example in dp[i][j] = dp[i - 1][k] + C[k][j]
+C[i][j] - some given cost function
+
+<Divide and Conquer Optimization>
+Original Recurrence : dp[i][j] = min{dp[i - 1][k] + C[k][j] : k < j}
+Sufficient Condition: A[i][j] <= A[i][j + 1]
+Original Complexity : O(kn^2)
+Optimized Complexity: O(knlogn)
+
+<Knuth Optimization>
+Original Recurrence : dp[i][j] = min{dp[i][k] + dp[k][j] : i < k < j} + C[i][j]
+Sufficient Condition: A[i, j - 1] <= A[i, j] <= A[i + 1, j]
+Original Complexity : O(n^3)
+Optimized Complexity: O(n^2)
+"
+It is claimed (in the references) that Knuth Optimization is applicable if C[i][j] satisfies the following 2 conditions:
+quadrangle inequality: C[a][c] + C[b][d] <= C[a][d] + C[b][c], a <= b <= c <= d
+monotonicity: C[b][c] <= C[a][d], a <= b <= c <= d
+"
